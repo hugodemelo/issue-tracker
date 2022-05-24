@@ -10,11 +10,17 @@ import { Issue } from '../models/issue';
 export class IssueListComponent implements OnInit {
 
   issues!: Issue[];
+  showReportIssue = false;
 
   constructor(private readonly issueService: IssuesService) {
   }
 
   ngOnInit(): void {
+    this.getIssues();
+  }
+
+  onCloseReport(): void {
+    this.showReportIssue = false;
     this.getIssues();
   }
 

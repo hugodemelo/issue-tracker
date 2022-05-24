@@ -15,4 +15,9 @@ export class IssuesService {
   getPendingIssues(): Issue[] {
     return this.issues.filter(issue => !issue.completed);
   }
+
+  createIssue(issue: Issue): void {
+    issue.issueNo = Math.trunc(Math.random() * 1_000_000); // LOL
+    this.issues.push(issue);
+  }
 }
