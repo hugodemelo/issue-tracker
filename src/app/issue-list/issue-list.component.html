@@ -7,6 +7,9 @@
       [clrDgField]="property">{{ property | titlecase }}</clr-dg-column>
 
     <clr-dg-row *clrDgItems="let issue of issues">
+      <clr-dg-action-overflow>
+        <button (click)="selectedIssue = issue" class="action-item">Resolve</button>
+      </clr-dg-action-overflow>
       <clr-dg-cell>{{ issue.issueNo }}</clr-dg-cell>
       <clr-dg-cell>{{ issue.type }}</clr-dg-cell>
       <clr-dg-cell>{{ issue.title }}</clr-dg-cell>
@@ -21,3 +24,8 @@
   </clr-datagrid>
 </ng-container>
 <app-issue-report (formClose)="onCloseReport()" *ngIf="showReportIssue"></app-issue-report>
+<app-confirm-dialog
+  (confirm)="onConfirm($event)"
+  *ngIf="selectedIssue"
+  [issueNo]="selectedIssue.issueNo">
+</app-confirm-dialog>

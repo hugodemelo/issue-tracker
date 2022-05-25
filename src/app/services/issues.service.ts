@@ -20,4 +20,12 @@ export class IssuesService {
     issue.issueNo = Math.trunc(Math.random() * 1_000_000); // LOL
     this.issues.push(issue);
   }
+
+  completeIssue(issue: Issue): void {
+    const index = this.issues.findIndex(i => i === issue);
+    this.issues[ index ] = {
+      ...issue,
+      completed: new Date()
+    };
+  }
 }
