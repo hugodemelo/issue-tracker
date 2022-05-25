@@ -28,4 +28,11 @@ export class IssuesService {
       completed: new Date()
     };
   }
+
+  getSuggestions(title: string): Issue[] {
+    if (title.length > 2) {
+      return this.issues.filter(issue => issue.title.includes(title));
+    }
+    return [];
+  }
 }
