@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Issue } from '../models/issue';
 import { issues } from '../../assets/mock-issues';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -29,10 +30,10 @@ export class IssuesService {
     };
   }
 
-  getSuggestions(title: string): Issue[] {
+  getSuggestions(title: string): Observable<Issue[]> {
     if (title.length > 2) {
-      return this.issues.filter(issue => issue.title.includes(title));
+      return of(this.issues.filter(issue => issue.title.includes(title)));
     }
-    return [];
+    return of([]);
   }
 }
